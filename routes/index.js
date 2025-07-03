@@ -10,6 +10,7 @@ const connection = mysql.createConnection({
   database: 'todo_app'
 });
 
+
 router.get('/', function (req, res, next) {
   knex("tasks")
     .select("*")
