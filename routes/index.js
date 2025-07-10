@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const knex = require('../db/knex');
+
 const mysql = require('mysql');
+
+const knex = require('../db/knex');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -21,10 +23,11 @@ router.get('/', function (req, res, next) {
         todos: results,
       });
     })
-    .catch(function (err) {
+     .catch(function (err) {
       console.error(err);
       res.render('index', {
         title: 'ToDo App',
+        todos: [], // ← 追加
       });
     });
 });
@@ -40,8 +43,11 @@ router.post('/', function (req, res, next) {
       console.error(err);
       res.render('index', {
         title: 'ToDo App',
+        todos: [],
       });
     });
 });
+
+router.use('/signup', require('./signup'));
 
 module.exports = router;
