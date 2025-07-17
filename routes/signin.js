@@ -25,6 +25,7 @@ router.post('/', function (req, res, next) {
           errorMessage: ["ユーザが見つかりません"],
         });
       } else {
+        req.session.userid = results[0].id;
         res.redirect('/');
       }
     })
