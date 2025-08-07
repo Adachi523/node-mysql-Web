@@ -11,11 +11,18 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.post('/', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/signin',
-    failureFlash: true,
-  }
-));
+router.post('/signin', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.render('signin', { error: 'ログイン失敗', isAuth: false }); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      req.session.userid = user.id;
+      return res.redirect('/calendar');
+    });
+  })(req, res, next);
+});
+
+// app.use('/calendar', calendarRouter); ← この行も削除
 
 module.exports = router;

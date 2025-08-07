@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <%- include('./header'); %>
+    <div class="container mt-4">
+      <h2><%= year %>年 <%= month %>月</h2>
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th class="text-danger">日</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th class="text-primary">土</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% weeks.forEach(week => { %>
+            <tr>
+              <% week.forEach(day => { %>
+                <td><%= day ? day : '' %></td>
+              <% }) %>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
