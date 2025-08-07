@@ -22,14 +22,23 @@ router.get('/', (req, res) => {
     while (week.length < 7) week.push('');
     weeks.push(week);
   }
-
+const today = new Date();
   res.render('calendar', {
     title: 'カレンダー',
     year,
     month: month + 1,
     weeks,
+    today: {
+    year: today.getFullYear(),
+    month: today.getMonth() + 1,
+    date: today.getDate()
+  },
     isAuth: req.session && req.session.userid ? true : false,
   });
+  if (!req.session.user) {
+    return res.redirect('/signin');
+  }
+  res.render('calendar', { user: req.session.user });
 });
 
 module.exports = router;
