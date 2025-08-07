@@ -22,12 +22,18 @@
         </thead>
         <tbody>
           <% weeks.forEach(week => { %>
-            <tr>
-              <% week.forEach(day => { %>
-                <td><%= day ? day : '' %></td>
-              <% }) %>
-            </tr>
-          <% }) %>
+  <tr>
+    <% week.forEach(day => { %>
+      <% 
+        const isToday = day &&
+                        year === today.year &&
+                        month === today.month &&
+                        day === today.date;
+      %>
+      <td class="<%= isToday ? 'today-cell' : '' %>"><%= day ? day : '' %></td>
+    <% }) %>
+  </tr>
+<% }) %>
         </tbody>
       </table>
     </div>
