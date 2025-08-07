@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const passport = require("passport");
+const knex = require('../db/knex');
+const bcrypt = require("bcrypt");
 
 router.get('/', function (req, res, next) {
   const userId = req.session.userid;
@@ -23,6 +25,6 @@ router.post('/signin', function(req, res, next) {
   })(req, res, next);
 });
 
-// app.use('/calendar', calendarRouter); ← この行も削除
+//app.use('/calendar', calendarRouter); //← この行も削除
 
 module.exports = router;

@@ -3,10 +3,71 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <style>
+      body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', sans-serif;
+      }
+
+      .today-cell {
+  background-color: #ffc107 !important; /* 黄色 */
+  border: 2px solid #ff5722;
+  font-weight: bold;
+  color: #212529;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+
+      .calendar-container {
+        max-width: 800px;
+        margin: 40px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      th, td {
+        width: 14.28%;
+        height: 80px;
+        vertical-align: middle;
+      }
+
+      th {
+        background-color: #f1f1f1;
+        font-weight: bold;
+      }
+
+      td {
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      td:hover {
+        background-color: #e9ecef;
+      }
+
+      .text-danger {
+        color: #dc3545 !important; /* 赤: 日曜 */
+      }
+
+      .text-primary {
+        color: #007bff !important; /* 青: 土曜 */
+      }
+    </style>
   </head>
   <body>
     <%- include('./header'); %>
-    <div class="container mt-4">
+
+    <div class="calendar-container">
       <h2><%= year %>年 <%= month %>月</h2>
       <table class="table table-bordered text-center">
         <thead>
